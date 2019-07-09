@@ -1,0 +1,142 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:latest", "tslint-immutable", "tslint-config-prettier"],
+  "rules": {
+    "no-empty-interface": {
+      "severity": "warning"
+    },
+
+    "no-parameter-reassignment": true,
+
+    "only-arrow-functions": true,
+
+    "prefer-for-of": true,
+
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+
+    "ban-comma-operator": true,
+
+    "curly": false,
+
+    "no-conditional-assignment": true,
+
+    "no-console": false,
+
+    "no-construct": true,
+
+    "no-duplicate-switch-case": {
+      "severity": "warning"
+    },
+
+    "no-duplicate-variable": true,
+
+    "no-dynamic-delete": true,
+
+    "no-empty": {
+      "severity": "warning"
+    },
+
+    "no-eval": true,
+
+    "no-object-literal-type-assertion": true,
+
+    "no-string-throw": true,
+
+    "no-this-assignment": true,
+
+    "no-var-keyword": true,
+
+    "prefer-conditional-expression": true,
+
+    "prefer-object-spread": true,
+
+    "triple-equals": true,
+
+    "indent": [true, "spaces", 2],
+
+    "linebreak-style": [true, "LF"],
+
+    "prefer-const": true,
+
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "objects": "never",
+          "arrays": "never",
+          "functions": "never",
+          "typeLiterals": "never"
+        }
+      }
+    ],
+
+    "arrow-parens": true,
+
+    "arrow-return-shorthand": true,
+
+    "class-name": true,
+
+    "encoding": true,
+
+    "import-spacing": true,
+
+    "interface-name": false,
+
+    "no-irregular-whitespace": true,
+
+    "no-trailing-whitespace": true,
+
+    "object-literal-key-quotes": [true, "consistent-as-needed"],
+
+    "object-literal-sort-keys": false,
+
+    "one-variable-per-declaration": true,
+
+    "ordered-imports": true,
+
+    "quotemark": [true, "double"],
+
+    "semicolon": [true, "never"],
+
+    "space-before-function-paren": [
+      true,
+      {
+        "asyncArrow": "always"
+      }
+    ],
+
+    "space-within-parens": [true, 0],
+
+    "switch-final-break": true,
+
+    "no-implicit-dependencies": false,
+
+    "eofline": true,
+
+    "newline-per-chained-call": false,
+
+    "one-line": false,
+
+    "no-submodule-imports": false,
+
+    // Immutability rules
+    "readonly-keyword": true,
+    "no-object-mutation": true,
+    "no-delete": true,
+    "no-method-signature": true,
+
+    // Functional style rules
+    "no-this": true,
+    "no-class": true,
+    "no-mixed-interface": true
+  }
+}

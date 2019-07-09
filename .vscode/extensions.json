@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "chmln.better-whitespace",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "Gruntfuggly.todo-tree",
+    "IBM.output-colorizer",
+    "WallabyJs.quokka-vscode",
+    "johnathanludwig.fileswitcher",
+    "hardikmodha.create-tests",
+    "philfontaine.autolaunch",
+    "gabrielgrinberg.auto-run-command",
+    "wallabyjs.wallaby-vscode"
+  ]
+}
