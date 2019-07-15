@@ -3,7 +3,6 @@ import SHA256 from "crypto-js/sha256"
 export namespace Block {
 
   export interface T {
-    readonly index: number
     readonly timestamp: number
     readonly data: any
     readonly previousHash: string
@@ -14,8 +13,7 @@ export namespace Block {
   export const hash = (block: T): T => {
     return {
       ...block,
-      hash: SHA256(block.index
-        + block.previousHash
+      hash: SHA256(block.previousHash
         + block.timestamp
         + JSON.stringify(block.data)
         + block.nonce
@@ -23,8 +21,14 @@ export namespace Block {
     }
   }
 
-  export const create = (index: number, timestamp: number, data: any): T => {
-    return hash({ index, timestamp, data, previousHash: "", hash: "", nonce: 0 })
+  export const create = (data: any): T => {
+    return hash({
+      timestamp: new Date().getTime(),
+      data,
+      previousHash: "",
+      hash: "",
+      nonce: 0
+    })
   }
 
   export const mine = (difficulty: number) => (block: T) => {
