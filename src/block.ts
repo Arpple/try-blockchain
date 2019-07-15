@@ -10,26 +10,22 @@ export namespace Block {
     readonly nonce: number
   }
 
-  export const hash = (block: T): T => {
-    return {
-      ...block,
-      hash: SHA256(block.previousHash
-        + block.timestamp
-        + JSON.stringify(block.data)
-        + block.nonce
-      ).toString()
-    }
-  }
+  export const hash = (block: T): T => ({
+    ...block,
+    hash: SHA256(block.previousHash
+      + block.timestamp
+      + JSON.stringify(block.data)
+      + block.nonce
+    ).toString()
+  })
 
-  export const create = (data: any): T => {
-    return hash({
-      timestamp: new Date().getTime(),
-      data,
-      previousHash: "",
-      hash: "",
-      nonce: 0
-    })
-  }
+  export const create = (data: any): T => hash({
+    timestamp: new Date().getTime(),
+    data,
+    previousHash: "",
+    hash: "",
+    nonce: 0
+  })
 
   export const mine = (difficulty: number) => (block: T) => {
     let miningBlock = block
