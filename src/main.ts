@@ -1,10 +1,10 @@
 import S from "sanctuary"
-import { Block } from "./block"
 import { Chain } from "./chain"
+import { Transaction } from "./transaction"
 
-const myChain = S.pipe([
-  Chain.addBlock(Block.create({ amount: 10 })),
-  Chain.addBlock(Block.create({ amount: 20 }))
-])(Chain.create(2))
-
-Chain.isValid(myChain) // ?
+S.pipe([
+  Chain.addTransaction(Transaction.create("a", "b", 10)),
+  Chain.addTransaction(Transaction.create("b", "a", 5)),
+  Chain.mine("arpple"),
+  Chain.getBalance("b")
+])(Chain.create(2, 10)) // ?
