@@ -1,6 +1,8 @@
 import S from "sanctuary"
 import { Block } from "./block"
 import { Transaction } from "./transaction"
+import { Arr } from "./util/array"
+import { Obj } from "./util/object"
 
 export namespace Chain {
 
@@ -28,18 +30,18 @@ export namespace Chain {
       Block.mine(chain.difficulty)
     ])(chain.pendingTransactions)
 
-    return {
-      ...chain,
-      blocks: [...chain.blocks, block],
-      pendingTransactions: [Transaction.create("", rewardAddress, chain.miningReward)]
-    }
+    const rewardTransaction = Transaction.create("", rewardAddress, chain.miningReward)
+
+    return Obj.patch<T>({
+      blocks: Arr.append(block)(chain.blocks),
+      pendingTransactions: [rewardTransaction]
+    })(chain)
   }
 
   export const addTransaction = (transaction: Transaction.T) => (chain: T): T => {
-    return {
-      ...chain,
-      pendingTransactions: [...chain.pendingTransactions, transaction]
-    }
+    return Obj.patch<T>({
+      pendingTransactions: Arr.append(transaction)(chain.pendingTransactions)
+    })(chain)
   }
 
   const sumBlockBalance = (address: string) => (block: Block.T): number => {
@@ -62,14 +64,17 @@ export namespace Chain {
     }, 0)
   }
 
+  const isGenesisBlock = (index: number) => index === 0
+
+  const isValidBlock = (block: Block.T, previousBlock: Block.T) => {
+    return block.hash === Block.hash(block).hash
+      && block.previousHash === previousBlock.hash
+  }
+
   export const isValid = (chain: T) => chain.blocks
     .reduce(
-      (prev, curr, index) =>
-        index === 0
-        || (
-          prev
-          && curr.hash === Block.hash(curr).hash
-          && curr.previousHash === chain[index - 1].hash
-        ),
-      true)
+      (acc, curr, index) => isGenesisBlock(index)
+        || (acc && isValidBlock(curr, chain[index - 1])),
+      true
+    )
 }
